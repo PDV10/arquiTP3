@@ -1,4 +1,4 @@
-package dtos;
+package springboot.app.dtos;
 
 public class DireccionDTO {
     private int id ;
