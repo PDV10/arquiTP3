@@ -10,6 +10,7 @@ import springboot.app.repository.DireccionRepository;
 
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service("DireccionServicio")
@@ -33,9 +34,26 @@ public class  DireccionServicio implements BaseService<Direccion>{
        return direccionRepository.findAll();
     }
 
+    @Transactional
+    public List<DireccionDTO> findAllByCiudad(String ciudad) throws Exception {
+        var resultado = direccionRepository.findAllByCiudad(ciudad);
+        try {
+            return resultado.stream().map(direccion -> new DireccionDTO(direccion.getId(), direccion.getCiudad(), direccion.getCalle())).collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+
     @Override
+    @Transactional
     public Direccion findById(Long id) throws Exception {
-        return null;
+        try {
+            Optional<Direccion> direccion = direccionRepository.findById(id);
+            return direccion.get();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
