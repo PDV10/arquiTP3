@@ -23,9 +23,6 @@ public class Direccion {
    // private List<Persona> habitantes;
     public static final String OBTENER_PERSONAS_DE_UNA_CIUDAD = "Direccion.OBTENER_PERSONAS_DE_UNA_CIUDAD";
 
-    /*public Direccion() {
-        this.habitantes = new ArrayList<Persona>();
-    }*/
 
     public Direccion(String ciudad, String calle) {
         this.ciudad = ciudad;

@@ -17,9 +17,9 @@ public class ArquiTp3Application {
 		SpringApplication.run(ArquiTp3Application.class, args);
 	}
 
-	@PostConstruct
-	public void init() throws IOException {
-		cargaDeDatos.cargarDatosDesdeCSV();
-	}
+//	@PostConstruct
+//	public void init() throws IOException {
+//		cargaDeDatos.cargarDatosDesdeCSV();
+//	}
 
 }

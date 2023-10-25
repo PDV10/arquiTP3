@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service("DireccionServicio")
-public class  DireccionServicio implements BaseService<Direccion>{
+public class  DireccionServicio {
     @Autowired
     private DireccionRepository direccionRepository;
 
@@ -29,7 +29,6 @@ public class  DireccionServicio implements BaseService<Direccion>{
         }
     }
 
-    @Override
     public List<Direccion> findAll() throws Exception {
        return direccionRepository.findAll();
     }
@@ -45,7 +44,6 @@ public class  DireccionServicio implements BaseService<Direccion>{
     }
 
 
-    @Override
     @Transactional
     public Direccion findById(Long id) throws Exception {
         try {
@@ -56,17 +54,31 @@ public class  DireccionServicio implements BaseService<Direccion>{
         }
     }
 
-    @Override
     public Direccion save(Direccion entity) throws Exception {
-        return null;
+        return direccionRepository.save(entity);
     }
 
-    @Override
-    public Direccion update(Long id, Direccion entity) throws Exception {
-        return null;
+    @Transactional
+    public Direccion update(Long id, Direccion nuevaDireccion) throws Exception {
+        Optional<Direccion> direccionExistente = direccionRepository.findById(id);
+        try {
+            if (direccionExistente.isPresent()) {
+                Direccion direccionActual = direccionExistente.get();
+
+                direccionActual.setCiudad(nuevaDireccion.getCiudad());
+                direccionActual.setCalle(nuevaDireccion.getCalle());
+
+                return direccionRepository.save(direccionActual);
+
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+
     }
 
-    @Override
     public boolean delete(Long id) throws Exception {
         return false;
     }
