@@ -79,7 +79,9 @@ public class  DireccionServicio {
 
     }
 
-    public boolean delete(Long id) throws Exception {
-        return false;
+    public void delete(Long id) throws Exception {
+
+       direccionRepository.deleteById(id);
+
     }
 }

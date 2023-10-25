@@ -9,12 +9,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository("DireccionRepository")
-public interface DireccionRepository extends JpaRepository<Direccion,Integer> {
+public interface DireccionRepository extends JpaRepository<Direccion,Long> {
 
     public List<Direccion> findAll();
 
     public Optional<Direccion> findById(Long id);
     public List<Direccion> findAllByCiudad(String ciudad);
 
+    public void deleteById(Long id);
 
 }

@@ -10,7 +10,7 @@ public class Direccion {
     @Id
     //Indicamos que el id sea AUTO-INCREMENT
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     @Column
     private String ciudad;
     @Column
@@ -33,7 +33,7 @@ public class Direccion {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 

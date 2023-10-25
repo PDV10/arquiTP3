@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import springboot.app.model.Direccion;
 import springboot.app.services.DireccionServicio;
 
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/direccion")
@@ -15,15 +17,6 @@ public class DireccionController {
     private DireccionServicio direccionServicio;
 
     public DireccionController() {
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updateById(@PathVariable long id, @RequestBody Direccion direccion){
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(direccionServicio.update(id,direccion));
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Por favor intente más tarde.\"}");
-        }
     }
 
     @GetMapping("")
@@ -51,5 +44,35 @@ public class DireccionController {
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Por favor intente más tarde.\"}");
         }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateById(@PathVariable Long id, @RequestBody Direccion direccion){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(direccionServicio.update(id,direccion));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Por favor intente más tarde.\"}");
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        try {
+            if(direccionServicio.findById(id) != null){
+                direccionServicio.delete(id);
+               // ResponseEntity<?> status = this.findById(id);
+                //if (status.getStatusCode().equals(HttpStatus.NOT_FOUND)){
+                    return ResponseEntity.status(HttpStatus.OK).body("{\"Eliminado con Exito.\"}");
+                //}
+
+            }else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Direccion no existente.\"}");
+            }
+
+
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Por favor intente más tarde.\"}");
+        }
+
     }
 }

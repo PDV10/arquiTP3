@@ -1,14 +1,14 @@
 package springboot.app.dtos;
 
 public class DireccionDTO {
-    private int id ;
+    private Long id ;
     private String ciudad;
     private String calle;
 
     public DireccionDTO() {
     }
 
-    public DireccionDTO(int id, String ciudad, String calle) {
+    public DireccionDTO(Long id, String ciudad, String calle) {
         this.id = id;
         this.ciudad = ciudad;
         this.calle = calle;
@@ -19,11 +19,11 @@ public class DireccionDTO {
         this.calle = calle;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
