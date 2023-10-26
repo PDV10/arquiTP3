@@ -54,6 +54,16 @@ public class  DireccionServicio {
         }
     }
 
+    @Transactional
+    public Direccion findByCalle(String calle) throws Exception {
+        try {
+            Optional<Direccion> direccion = direccionRepository.findByCalle(calle);
+            return direccion.get();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
     public Direccion save(Direccion entity) throws Exception {
         return direccionRepository.save(entity);
     }
@@ -84,4 +94,6 @@ public class  DireccionServicio {
        direccionRepository.deleteById(id);
 
     }
+
+
 }
