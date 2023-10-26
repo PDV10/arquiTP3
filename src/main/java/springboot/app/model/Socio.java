@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 
 public class Socio {
     @Id
-    private int id;
+    private Long id;
     @Column(nullable = false)
     private String tipo;
     @OneToOne(cascade = CascadeType.ALL)

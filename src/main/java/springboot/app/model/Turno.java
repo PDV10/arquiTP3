@@ -10,7 +10,7 @@ import java.util.List;
 public class Turno {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     @Column
     private Timestamp fecha;
     @ManyToMany(fetch = FetchType.LAZY)
@@ -24,16 +24,16 @@ public class Turno {
         this.jugadores = jugadores;
     }
 
-    public Turno(int id, Timestamp fecha) {
+    public Turno(Long id, Timestamp fecha) {
         this.id = id;
         this.fecha = fecha;
         this.jugadores = new ArrayList<Persona>();
     }
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
