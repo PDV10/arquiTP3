@@ -1,5 +1,6 @@
 package springboot.app.dtos;
 
+
 import springboot.app.model.Persona;
 
 public class SocioDto {

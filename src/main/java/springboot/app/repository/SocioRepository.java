@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface SocioRepository extends JpaRepository<Socio,Long> {
     public List<Socio> findAll();
-
     public Optional<Socio> findById(Long id);
+    public void deleteById(Long id);
 }

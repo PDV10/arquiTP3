@@ -45,10 +45,15 @@ public class  DireccionServicio {
 
 
     @Transactional
-    public Direccion findById(Long id) throws Exception {
+    public DireccionDTO findById(Long id) throws Exception {
         try {
             Optional<Direccion> direccion = direccionRepository.findById(id);
-            return direccion.get();
+            if (direccion.isPresent()){
+                return new DireccionDTO(direccion.get().getId(),direccion.get().getCiudad(),direccion.get().getCalle());
+            }else {
+                return null;
+            }
+
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

@@ -5,7 +5,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
-import springboot.app.controller.DireccionController;
 import springboot.app.dtos.PersonaDTO;
 import springboot.app.model.Direccion;
 import springboot.app.model.Persona;

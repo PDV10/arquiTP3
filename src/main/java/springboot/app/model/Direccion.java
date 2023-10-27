@@ -29,6 +29,12 @@ public class Direccion {
         this.calle = calle;
     }
 
+    public Direccion(Long id,String ciudad, String calle) {
+        this.id = id;
+        this.ciudad = ciudad;
+        this.calle = calle;
+    }
+
     public Direccion() {
 
     }
