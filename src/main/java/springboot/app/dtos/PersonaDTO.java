@@ -1,23 +1,32 @@
 package springboot.app.dtos;
 
+import springboot.app.model.Direccion;
+
 public class PersonaDTO {
     private Long id ;
     private String nombre;
     private int edad;
 
-    private String direccion;
+    private String calle;
     private String ciudad;
 
-    public PersonaDTO(Long id, String nombre, int edad, String direccion, String ciudad) {
+    private Direccion direccion;
+    public PersonaDTO(Long id, String nombre, int edad, String calle, String ciudad) {
         this.id = id;
         this.nombre = nombre;
         this.edad = edad;
-        this.direccion = direccion;
+        this.calle = calle;
         this.ciudad = ciudad;
     }
 
     public PersonaDTO() {
 
+    }
+
+    public PersonaDTO(Long id, String nombre, int edad) {
+        this.id = id;
+        this.nombre = nombre;
+        this.edad = edad;
     }
 
     public Long getId() {
@@ -44,12 +53,12 @@ public class PersonaDTO {
         this.edad = edad;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getCalle() {
+        return calle;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setCalle(String calle) {
+        this.calle = calle;
     }
 
     public String getCiudad() {
@@ -58,5 +67,16 @@ public class PersonaDTO {
 
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonaDTO{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", edad=" + edad +
+                ", calle='" + calle + '\'' +
+                ", ciudad='" + ciudad + '\'' +
+                '}';
     }
 }

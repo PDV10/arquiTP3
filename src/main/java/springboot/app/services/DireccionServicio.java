@@ -45,9 +45,24 @@ public class  DireccionServicio {
 
 
     @Transactional
-    public Direccion findById(Long id) throws Exception {
+    public DireccionDTO findById(Long id) throws Exception {
         try {
             Optional<Direccion> direccion = direccionRepository.findById(id);
+            if (direccion.isPresent()){
+                return new DireccionDTO(direccion.get().getId(),direccion.get().getCiudad(),direccion.get().getCalle());
+            }else {
+                return null;
+            }
+
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Transactional
+    public Direccion findByCalle(String calle) throws Exception {
+        try {
+            Optional<Direccion> direccion = direccionRepository.findByCalle(calle);
             return direccion.get();
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -85,6 +100,7 @@ public class  DireccionServicio {
     public void delete(Long id) throws Exception {
        direccionRepository.deleteById(id);
     }
+
     @Transactional
     public boolean findDireccion(DireccionDTO d) throws Exception{
         try {

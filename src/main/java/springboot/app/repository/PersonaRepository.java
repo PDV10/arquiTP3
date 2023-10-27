@@ -13,4 +13,9 @@ public interface PersonaRepository extends JpaRepository<Persona, Long> {
     public List<Persona> findAll();
 
     public Optional<Persona> findById(Long id);
+
+    public boolean existsById(Long id);
+
+    public Persona save(Persona p);
+
 }
