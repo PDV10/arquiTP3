@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import springboot.app.dtos.DireccionDTO;
 import springboot.app.model.Direccion;
 import springboot.app.services.DireccionServicio;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -55,7 +57,7 @@ public class DireccionController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
         try {
             if(direccionServicio.findById(id) != null){
@@ -75,4 +77,23 @@ public class DireccionController {
         }
 
     }
+
+    @PostMapping("")
+    public ResponseEntity<?> post(@RequestBody DireccionDTO entity){
+        try{
+
+
+            if(!direccionServicio.findDireccion(entity)){
+                return ResponseEntity.status(HttpStatus.OK).body(direccionServicio.post(entity));
+            }
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. La Direccion ya existe.\"}");
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. Por favor intente más tarde.\"}" + e.getMessage() + entity);
+        }
+    }
+
+
+
+
+
 }

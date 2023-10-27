@@ -54,8 +54,11 @@ public class  DireccionServicio {
         }
     }
 
-    public Direccion save(Direccion entity) throws Exception {
-        return direccionRepository.save(entity);
+    public DireccionDTO post(DireccionDTO entity) throws Exception {
+        System.out.println("Entra al post del Servicio");
+        Direccion direccion = new Direccion(entity.getCiudad(),entity.getCalle());
+        Direccion response = direccionRepository.save(direccion);
+        return new DireccionDTO(response.getCiudad(), response.getCalle());
     }
 
     @Transactional
@@ -80,8 +83,18 @@ public class  DireccionServicio {
     }
 
     public void delete(Long id) throws Exception {
-
        direccionRepository.deleteById(id);
-
     }
+    @Transactional
+    public boolean findDireccion(DireccionDTO d) throws Exception{
+        try {
+            String calle = d.getCalle();
+            String ciudad = d.getCiudad();
+
+            return direccionRepository.existsByCalleAndCiudad(calle,ciudad);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
 }
